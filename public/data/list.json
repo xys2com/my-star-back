@@ -1,0 +1,32 @@
+[
+  {
+    "id": 0,
+    "name": "Believer",
+    "type": "mp3",
+    "all": "Believer.mp3",
+    "liker": 0
+  },
+  { "id": 1, "name": "Dancin", "type": "mp3", "all": "Dancin.mp3", "liker": 0 },
+  {
+    "id": 2,
+    "name": "Dependent",
+    "type": "mp3",
+    "all": "Dependent.mp3",
+    "liker": 0
+  },
+  {
+    "id": 3,
+    "name": "Five Hours",
+    "type": "mp3",
+    "all": "Five Hours.mp3",
+    "liker": 0
+  },
+  {
+    "id": 4,
+    "name": "I Love You",
+    "type": "m4a",
+    "all": "I Love You.m4a",
+    "liker": 0
+  },
+  { "id": 5, "name": "Nope", "type": "m4a", "all": "Nope.m4a", "liker": 0 }
+]
