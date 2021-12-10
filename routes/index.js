@@ -74,6 +74,46 @@ router.get("/musicDetail", async (ctx, next) => {
     data: url,
   };
 });
+
+// 获得音频列表
+router.get("/onepiecemusics", async (ctx, next) => {
+  const src = "./public/data/music.json";
+  let data = await readFileToObj(src);
+  ctx.body = {
+    code: 200,
+    success: true,
+    data,
+  };
+});
+
+router.get("/musiclinks", async (ctx, next) => {
+  const { id } = ctx.request.query;
+  const filesSrc = "./public/data/music.json";
+  if (!id) {
+    ctx.body = {
+      success: false,
+      code: 800101,
+      message: "id错误",
+    };
+  }
+  const list = await readFileToObj(filesSrc);
+  log("id", id);
+  const index = list.findIndex((e) => {
+    return e.id === Number(id);
+  });
+  const item = list[index];
+  const url = item.url;
+  let data = await transmit(url, "get");
+  // const src = baseUrl + item.all;
+  // const fileStream = await readFileFs(src);
+  ctx.body = data;
+  // {
+  //   code: 200,
+  //   success: true,
+  //   data: data,
+  // };
+});
+
 // 请求转发
 router.post("/login", async (ctx, next) => {
   const { username, password } = ctx.request.body;
@@ -89,8 +129,12 @@ function transmit(url, type, data) {
   return new Promise((res, rej) => {
     request[type]({ url, form: data }, function (err, _res, body) {
       if (!err && _res.statusCode === 200) {
-        let a = JSON.parse(body);
-        res(a);
+        if (typeof body === "object") {
+          let a = JSON.parse(body);
+          res(a);
+        } else {
+          res(body);
+        }
       } else {
         let a = JSON.parse(body);
         res({
