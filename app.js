@@ -7,9 +7,9 @@ const onerror = require("koa-onerror");
 const bodyparser = require("koa-bodyparser");
 const logger = require("koa-logger");
 
-const index = require("./routes/index");
-const users = require("./routes/users");
-const fs = require("fs");
+// const index = require("./routes/index");
+// const users = require("./routes/users");
+const notfun = require("./routes/notfun");
 
 // error handler
 onerror(app);
@@ -80,35 +80,13 @@ app.use(async (ctx, next) => {
 });
 
 // routes
-app.use(index.routes(), index.allowedMethods());
-app.use(users.routes(), users.allowedMethods());
+// app.use(index.routes(), index.allowedMethods());
+// app.use(users.routes(), users.allowedMethods());
+app.use(notfun.routes(), notfun.allowedMethods());
 
 // error-handling
 app.on("error", (err, ctx) => {
   console.error("server error", err, ctx);
 });
-
-// app.use(initMcList());
-
-// 初始化音频列表
-function initMcList() {
-  fs.exists("./public/data/list.json", (e) => {
-    if (e) {
-      return;
-    } else {
-      var pa = fs.readdirSync("./public/videos");
-      pa.forEach(function (ele, index) {
-        var info = fs.statSync(path + "/" + ele);
-        if (info.isDirectory()) {
-          console.log("dir: " + ele);
-          readDirSync(path + "/" + ele);
-        } else {
-          console.log("file: " + ele);
-        }
-      });
-    }
-  });
-}
-// initMcList();
 
 module.exports = app;

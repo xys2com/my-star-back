@@ -1,1 +1,0 @@
-.canvas-wrap{transform-style:preserve-3d;transition:transform .6s cubic-bezier(.23,1,.32,1)}.canvas-wrap canvas{position:absolute;top:0;left:0}@media screen and (max-width:750px){canvas{transform:scale(.5) translate(-50%,-50%)!important}}

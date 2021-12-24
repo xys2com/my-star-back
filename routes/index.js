@@ -11,12 +11,6 @@ let { md5 } = require("../public/javascripts/md5");
 let { cn } = require("../public/data/test");
 const { rejects } = require("assert");
 
-router.get("/", async (ctx, next) => {
-  await ctx.render("index", {
-    title: "Hello Koa 2!",
-  });
-});
-
 router.get("/musicList", async (ctx, next) => {
   // 获得音频列表
   const src = "./public/data/list.json";
